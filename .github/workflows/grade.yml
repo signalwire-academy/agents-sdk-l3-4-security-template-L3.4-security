@@ -27,7 +27,7 @@ jobs:
         id: grade
         uses: signalwire-academy/swaig-grader@v1
         with:
-          agent-file: agent.py
+          agent-file: solution/agent.py
           checks: |
             instantiate
             swml_valid
