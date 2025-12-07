@@ -12,39 +12,22 @@ jobs:
       contents: read
       checks: write
       issues: write
-      
+
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      - name: Install dependencies
-        run: pip install signalwire-agents
-      
+
       - name: Grade lab
         id: grade
         uses: signalwire-academy/swaig-grader@v1
         with:
-          agent-file: solution/agent.py
-          checks: |
-            instantiate
-            swml_valid
-      
+          solution-file: solution/agent.py
+
       - name: Notify progress tracker
         if: always()
+        continue-on-error: true
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.PROGRESS_TOKEN }}
           repository: signalwire-academy/progress-tracker
           event-type: grading-complete
-          client-payload: |
-            {{
-              "repo": "${{ github.repository }}",
-              "student": "${{ github.repository_owner }}",
-              "lab": "L3.4",
-              "result": "${{ steps.grade.outcome }}",
-              "sha": "${{ github.sha }}"
-            }}
+          client-payload: '{"repo": "${{ github.repository }}", "student": "${{ github.repository_owner }}", "lab": "L3.4", "result": "${{ steps.grade.outcome }}", "sha": "${{ github.sha }}"}'
