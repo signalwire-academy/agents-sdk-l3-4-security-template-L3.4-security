@@ -23,7 +23,7 @@ jobs:
         uses: signalwire-academy/swaig-grader@v1
         with:
           solution-file: solution/agent.py
-          next-assignment: https://classroom.github.com/a/0GSecRIw
+          next-assignment: https://classroom.github.com/a/cv2Ft9PG
 
       - name: Notify progress tracker
         if: always()
