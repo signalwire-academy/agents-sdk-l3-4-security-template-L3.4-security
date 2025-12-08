@@ -7,8 +7,8 @@ on:
 
 jobs:
   grade:
-    # Skip if commit is from github-classroom[bot]
-    if: github.actor != 'github-classroom[bot]'
+    # Skip if commit is from github-classroom[bot] or if this is a template repo
+    if: github.actor != 'github-classroom[bot]' && !startsWith(github.repository, 'signalwire-academy/template-')
     runs-on: ubuntu-latest
     permissions:
       contents: read
