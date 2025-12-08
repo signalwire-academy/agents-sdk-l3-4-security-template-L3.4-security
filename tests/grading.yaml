@@ -36,7 +36,7 @@ checks:
     type: swml_contains
     file: solution/agent.py
     require:
-      - text: "secure"
+      - text: "Secure"
   - id: has_pay
     name: "PCI Payment"
     points: 15
